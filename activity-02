@@ -1,1 +1,83 @@
-bk
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Table</title>
+
+    <style>
+
+table {
+    border-collapse: collapse;
+    width: 70%;
+    margin: 20px auto;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    text-align: center;
+}
+
+th {
+    background-color: #535050ff;
+    color: white;
+    padding: 10px;
+}
+
+td {
+    border: 1px solid #ffffffff;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #daceceff;
+}
+
+tr:hover {
+    background-color: #e6f2ff;
+}
+
+.low-stock {
+    color: red;
+    font-weight: bold;
+}
+</style>
+</head>
+<body>
+
+<?php
+$products = array(
+    array("name"=>"Product A", "price"=>10.50, "stock"=>12),
+    array("name"=>"Product B", "price"=>5.60, "stock"=>7),
+    array("name"=>"Product C", "price"=>7.00, "stock"=>5),
+    array("name"=>"Product D", "price"=>12.00, "stock"=>20),
+    array("name"=>"Product E", "price"=>3.75, "stock"=>8),
+    array("name"=>"Product F", "price"=>15.00, "stock"=>30)
+);
+?>
+
+<h2 style="text-align:center;">Product Table</h2>
+
+<table>
+<tr>
+<th>No.</th>
+<th>Product Name</th>
+<th>Price</th>
+<th>Stock</th>
+</tr>
+
+<?php
+$no = 1;
+foreach($products as $p){
+    $class = ($p["stock"] < 10) ? "low-stock" : "";
+    echo "<tr class='$class'>";
+    echo "<td>$no</td>";
+    echo "<td>{$p['name']}</td>";
+    echo "<td>{$p['price']}</td>";
+    echo "<td>{$p['stock']}</td>";
+    echo "</tr>";
+    $no++;
+}
+?>
+</table>
+
+</body>
+</html>
